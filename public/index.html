@@ -11,7 +11,7 @@
       <h1>Authentication & RBAC System</h1>
 
       <!-- Registration Form -->
-      <div>
+      <div class="card">
         <h2>Register</h2>
         <input type="text" id="registerUsername" placeholder="Username" />
         <input type="email" id="registerEmail" placeholder="Email" />
@@ -22,20 +22,20 @@
           <option value="Moderator">Moderator</option>
         </select>
         <button onclick="register()">Register</button>
-        <p id="registerResponse"></p>
+        <p id="registerResponse" class="response"></p>
       </div>
 
       <!-- Login Form -->
-      <div>
+      <div class="card">
         <h2>Login</h2>
         <input type="email" id="loginEmail" placeholder="Email" />
         <input type="password" id="loginPassword" placeholder="Password" />
         <button onclick="login()">Login</button>
-        <p id="loginResponse"></p>
+        <p id="loginResponse" class="response"></p>
       </div>
 
       <!-- Protected Routes -->
-      <div id="protectedSection" style="display: none">
+      <div id="protectedSection" class="card" style="display: none">
         <h2>Protected Routes</h2>
         <button onclick="accessProtectedRoute('/admin')">
           Access Admin Route
@@ -46,7 +46,7 @@
         <button onclick="accessProtectedRoute('/moderator')">
           Access Moderator Route
         </button>
-        <p id="protectedResponse"></p>
+        <p id="protectedResponse" class="response"></p>
       </div>
     </div>
 
