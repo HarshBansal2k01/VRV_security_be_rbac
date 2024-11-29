@@ -22,10 +22,10 @@ router.get("/user", authMiddleware(["User", "Admin"]), async (req, res) => {
   }
 });
 
-// Moderator route: Show all moderators and users
+// Moderator route: Show all users
 router.get("/moderator", authMiddleware(["Moderator"]), async (req, res) => {
   try {
-    const users = await User.find({ role: { $in: ["User", "Moderator"] } });
+    const users = await User.find({ role: { $in: ["User"] } });
     res.json({ message: "Welcome Moderator!", users });
   } catch (error) {
     res.status(500).json({ error: error.message });

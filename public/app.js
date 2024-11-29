@@ -7,6 +7,7 @@ async function register() {
   const password = document.getElementById("registerPassword").value;
   const role = document.getElementById("registerRole").value;
 
+  // Send registration request to the server
   const response = await fetch(`${apiUrl}/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -23,6 +24,7 @@ async function login() {
   const email = document.getElementById("loginEmail").value;
   const password = document.getElementById("loginPassword").value;
 
+  // Send login request to the server
   const response = await fetch(`${apiUrl}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -32,7 +34,7 @@ async function login() {
   const data = await response.json();
   if (response.ok) {
     document.getElementById("loginResponse").innerText = "Login Successful!";
-    localStorage.setItem("token", data.token);
+    localStorage.setItem("token", data.token); // Save token for authentication
     document.getElementById("protectedSection").style.display = "block";
   } else {
     document.getElementById("loginResponse").innerText =
@@ -43,6 +45,8 @@ async function login() {
 // Access Protected Routes
 async function accessProtectedRoute(route) {
   const token = localStorage.getItem("token");
+
+  // Fetch protected route data from the server
   const response = await fetch(`${apiUrl}/protected${route}`, {
     method: "GET",
     headers: {
@@ -53,13 +57,14 @@ async function accessProtectedRoute(route) {
   const data = await response.json();
 
   if (response.ok) {
-    renderProtectedPage(route, data);
+    renderProtectedPage(route, data); // Render content based on the route
   } else {
     document.getElementById("protectedResponse").innerText =
       data.message || data.error;
   }
 }
 
+// Render content dynamically for different routes
 function renderProtectedPage(route, data) {
   const protectedSection = document.getElementById("protectedSection");
   protectedSection.innerHTML = ""; // Clear existing content
@@ -80,7 +85,7 @@ function renderProtectedPage(route, data) {
   } else if (route === "/moderator") {
     const list = document.createElement("ul");
 
-    // Filter to only show users with role "user"
+    // Show only "User" role data for moderators
     const usersOnly = data.users.filter((user) => user.role === "User");
     usersOnly.forEach((user) => {
       const item = document.createElement("li");
