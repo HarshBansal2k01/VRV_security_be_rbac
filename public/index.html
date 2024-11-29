@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auth & RBAC System</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Authentication & RBAC System</h1>
+
+      <!-- Registration Form -->
+      <div>
+        <h2>Register</h2>
+        <input type="text" id="registerUsername" placeholder="Username" />
+        <input type="email" id="registerEmail" placeholder="Email" />
+        <input type="password" id="registerPassword" placeholder="Password" />
+        <select id="registerRole">
+          <option value="User">User</option>
+          <option value="Admin">Admin</option>
+          <option value="Moderator">Moderator</option>
+        </select>
+        <button onclick="register()">Register</button>
+        <p id="registerResponse"></p>
+      </div>
+
+      <!-- Login Form -->
+      <div>
+        <h2>Login</h2>
+        <input type="email" id="loginEmail" placeholder="Email" />
+        <input type="password" id="loginPassword" placeholder="Password" />
+        <button onclick="login()">Login</button>
+        <p id="loginResponse"></p>
+      </div>
+
+      <!-- Protected Routes -->
+      <div id="protectedSection" style="display: none">
+        <h2>Protected Routes</h2>
+        <button onclick="accessProtectedRoute('/admin')">
+          Access Admin Route
+        </button>
+        <button onclick="accessProtectedRoute('/user')">
+          Access User Route
+        </button>
+        <button onclick="accessProtectedRoute('/moderator')">
+          Access Moderator Route
+        </button>
+        <p id="protectedResponse"></p>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
